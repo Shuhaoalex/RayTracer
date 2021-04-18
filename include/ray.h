@@ -1,24 +1,22 @@
 #ifndef RAY_H
 #define RAY_H
-#include "EigenTypes.h"
+#include "vec3.h"
 
 class ray {
+
+public:
+    const point3 origin;
+    const vec3 direction;
+
 public:
     ray() {}
-    ray(const point3& origin, const vec3& direction)
-        : orig(origin), dir(direction)
+    ray(const point3& _origin, const vec3& _direction)
+        : origin(_origin), direction(_direction)
     {}
 
-    inline point3 origin() const { return orig; }
-    inline vec3 direction() const { return dir; }
-
     inline point3 at(double t) const {
-        return orig + t * dir;
+        return origin + t * direction;
     }
-
-public:
-    point3 orig;
-    vec3 dir;
 };
 
 

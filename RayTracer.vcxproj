@@ -107,7 +107,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\Projects\RayTrcer\RayTracer\include;D:\Projects\RayTrcer\RayTracer\src;D:\libs\eigen-3.3.9</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,7 +140,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <OpenMPSupport>true</OpenMPSupport>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <AdditionalIncludeDirectories>D:\Projects\RayTrcer\RayTracer\include;D:\Projects\RayTrcer\RayTracer\src;D:\libs\eigen-3.3.9</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -159,6 +159,9 @@
     <ClInclude Include="include\ray.h" />
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="include\write_ppm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
