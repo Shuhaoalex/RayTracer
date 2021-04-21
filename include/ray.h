@@ -5,8 +5,8 @@
 class ray {
 
 public:
-    const point3 origin;
-    const vec3 direction;
+    point3 origin;
+    vec3 direction;
 
 public:
     ray() {}
