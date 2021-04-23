@@ -47,6 +47,9 @@
     <ClInclude Include="include\material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\moving_sphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

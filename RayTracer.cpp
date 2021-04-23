@@ -9,6 +9,7 @@
 #include "hittable_list.h"
 #include "write_ppm.h"
 #include "sphere.h"
+#include "moving_sphere.h"
 #include "camera.h"
 
 using std::chrono::high_resolution_clock;
@@ -47,13 +48,14 @@ hittable_list random_scene() {
 
 				if (choose_mat < 0.8) {
 					// diffuse
-					auto albedo = vec3::Random().cwiseProduct(vec3::Random());
+					color albedo = vec3::Random().cwiseProduct(vec3::Random());
 					sphere_material = make_shared<lambertian>(albedo);
-					world.add(make_shared<sphere>(center, 0.2, sphere_material));
+					vec3 center2 = center + vec3(0, random_double(0, .5), 0); // The datatype here for center2 must be vec3 and should not be auto! otherwise center2 will not be evaluated
+					world.add(make_shared<moving_sphere>(center, center2, 0.0, 1.0, 0.2, sphere_material));
 				}
 				else if (choose_mat < 0.95) {
 					// metal
-					auto albedo = random_vec3(0.5, 1);
+					color albedo = random_vec3(0.5, 1);
 					auto fuzz = random_double(0, 0.5);
 					sphere_material = make_shared<metal>(albedo, fuzz);
 					world.add(make_shared<sphere>(center, 0.2, sphere_material));
@@ -82,10 +84,10 @@ hittable_list random_scene() {
 int main()
 {
 	// Image
-	const double aspect_ratio = 3.0 / 2.0;
-	const size_t width = 1280;
+	const double aspect_ratio = 16.0 / 9.0;
+	const size_t width = 400;
 	const size_t height = static_cast<size_t>(width / aspect_ratio);
-	const size_t samples_per_pixel = 500;
+	const size_t samples_per_pixel = 100;
 	const int max_depth = 50;
 
 	// World
@@ -97,7 +99,7 @@ int main()
 	vec3 vup(0, 1, 0);
 	auto dist_to_focus = 10.0;
 	auto aperture = 0.1;
-	camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus);
+	camera cam(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus, 0.0, 1.0);
 
 	// Render
 

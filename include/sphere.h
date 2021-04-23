@@ -18,17 +18,17 @@ public:
 };
 
 bool sphere :: hit(const ray& r, double t_min, double t_max, hit_record& rec) const {
-	auto oc = r.origin - center;
-	auto a = r.direction.squaredNorm();
-	auto half_b = r.direction.dot(oc);
-	auto c = oc.squaredNorm() - radius * radius;
+	vec3 oc = r.origin - center;
+	double a = r.direction.squaredNorm();
+	double half_b = r.direction.dot(oc);
+	double c = oc.squaredNorm() - radius * radius;
 
-	auto discriminant = half_b * half_b - a * c;
+	double discriminant = half_b * half_b - a * c;
 	if (discriminant < 0) return false;
-	auto sqrtd = sqrt(discriminant);
+	double sqrtd = sqrt(discriminant);
 
 	// Looking for root lies in the acceptable range.
-	auto root = (-half_b - sqrtd) / a;
+	double root = (-half_b - sqrtd) / a;
 	if (root < t_min || t_max < root) {
 		root = (-half_b + sqrtd) / a;
 		if (root < t_min || t_max < root)
